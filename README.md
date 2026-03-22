@@ -156,7 +156,3 @@ For major changes, please open an issue first to discuss your idea.
 This project is available under the MIT License.
 
 ---
-
-### 💡 Pro Tip for GitHub Post
-
-Add a short demo GIF in your repo banner section and include 2-3 screenshots in the table above to improve engagement and star rate.
