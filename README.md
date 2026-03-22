@@ -6,7 +6,7 @@ AniScope helps users discover anime through a stylish card interface, smart sear
 
 ## 🌐 Live Demo
 
-🔗 Deployed App: https://ani-scope-lr0pxin9c-aryan-barbates-projects.vercel.app/
+🔗 Deployed App: https://ani-scope-nine.vercel.app?_vercel_share=xnTGw9syP3XB4DvxoyH3qhN5C7cmIxvu
 
 ## ✨ Highlights
 
