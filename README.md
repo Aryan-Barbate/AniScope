@@ -13,7 +13,7 @@ AniScope helps users discover anime through a stylish card interface, smart sear
 ![HTML](https://img.shields.io/badge/HTML5-Structure-E34F26?logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-UI%20Design-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Logic-F7DF1E?logo=javascript&logoColor=black)
-![Status](https://img.shields.io/badge/Status-Ready%20to%20Deploy-2ea44f)
+![Status](https://img.shields.io/badge/Status-Deployed%20on%20Vercel-000000)
 
 | Feature | Description | User Benefit |
 |---|---|---|
