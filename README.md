@@ -21,13 +21,23 @@ AniScope helps users discover anime through a stylish card interface, smart sear
 
 ## 📸 Screenshots
 
-> Add your screenshots here after uploading them to the repo.
-
-| View | Suggested File |
+| View | File |
 |---|---|
-| Home Screen | assets/screenshots/home.png |
-| Search Results | assets/screenshots/search-results.png |
-| Anime Detail Modal | assets/screenshots/modal.png |
+| Home Screen | `images/1.png` |
+| Search Results | `images/2.png` |
+| Anime Detail Modal | `images/3.png` |
+
+### Home Screen
+
+![Home Screen](images/1.png)
+
+### Search Results
+
+![Search Results](images/2.png)
+
+### Anime Detail Modal
+
+![Anime Detail Modal](images/3.png)
 
 ## 🧱 Tech Stack
 
@@ -42,6 +52,10 @@ AniScope helps users discover anime through a stylish card interface, smart sear
 
 ```text
 AniScope/
+|- images/
+|  |- 1.png
+|  |- 2.png
+|  |- 3.png
 |- index.html
 |- style.css
 |- script.js
