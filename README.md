@@ -4,6 +4,10 @@
 
 AniScope helps users discover anime through a stylish card interface, smart search, genre filters, and a polished detail modal.
 
+## 🌐 Live Demo
+
+🔗 Deployed App: https://ani-scope-lr0pxin9c-aryan-barbates-projects.vercel.app/
+
 ## ✨ Highlights
 
 ![HTML](https://img.shields.io/badge/HTML5-Structure-E34F26?logo=html5&logoColor=white)
