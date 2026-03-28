@@ -1,8 +1,8 @@
 # AniScope 🎌
 
-> A cinematic anime discovery web app built with HTML, CSS, and JavaScript.
+> A minimal anime discovery web app with an editor-inspired UI, built with HTML, CSS, and JavaScript.
 
-AniScope helps users discover anime through a stylish card interface, smart search, genre filters, and a polished detail modal.
+AniScope helps users discover anime through a clean card interface, smart search, genre filters, smooth scroll reveals, and a polished detail modal.
 
 ## 🌐 Live Demo
 
@@ -18,7 +18,9 @@ AniScope helps users discover anime through a stylish card interface, smart sear
 |---|---|---|
 | 🔎 Smart Search | Title-based search with API fallback for longer queries | Fast anime discovery |
 | 🎭 Genre Filter | Filter local and API results by selected genre | Cleaner browsing |
-| 🪄 Cinematic UI | Glassmorphism cards, gradients, motion, responsive layout | Modern visual experience |
+| 🧩 Minimal Editor UI | Clean panel layout with consistent spacing and low-noise visuals | Better focus while browsing |
+| 🎨 Custom Palette | Warm brand palette with matching shades for surfaces and accents | Cohesive visual identity |
+| 🍎 Smooth Scroll Motion | Apple-style reveal-on-scroll animations with staggered timing | Premium interaction feel |
 | 🖼️ Detail Modal | Enhanced anime popup with source/genre chips | Better readability |
 | 📊 Live Meta | Shows result count and source (Local/API) | Better context |
 
@@ -26,28 +28,28 @@ AniScope helps users discover anime through a stylish card interface, smart sear
 
 | View | File |
 |---|---|
-| Home Screen | `images/1.png` |
-| Search Results | `images/2.png` |
-| Anime Detail Modal | `images/3.png` |
+| Home Screen | `images/home-screen.png` |
+| Search Results | `images/search-results.png` |
+| Anime Detail Modal | `images/detail-modal.png` |
 
 ### Home Screen
 
-![Home Screen](images/1.png)
+![Home Screen](images/home-screen.png)
 
 ### Search Results
 
-![Search Results](images/2.png)
+![Search Results](images/search-results.png)
 
 ### Anime Detail Modal
 
-![Anime Detail Modal](images/3.png)
+![Anime Detail Modal](images/detail-modal.png)
 
 ## 🧱 Tech Stack
 
 | Layer | Tools |
 |---|---|
 | Structure | HTML5 |
-| Styling | CSS3 (custom properties, animations, responsive design) |
+| Styling | CSS3 (custom properties, minimal editor-style layout, responsive design) |
 | Logic | Vanilla JavaScript (DOM APIs, fetch API, event delegation) |
 | Data Source | Jikan API (`https://api.jikan.moe/v4/anime`) |
 
@@ -56,9 +58,9 @@ AniScope helps users discover anime through a stylish card interface, smart sear
 ```text
 AniScope/
 |- images/
-|  |- 1.png
-|  |- 2.png
-|  |- 3.png
+|  |- home-screen.png
+|  |- search-results.png
+|  |- detail-modal.png
 |- index.html
 |- style.css
 |- script.js
@@ -125,6 +127,7 @@ flowchart LR
 | What to Customize | Where | How |
 |---|---|---|
 | 🎨 Theme colors | `style.css` (`:root`) | Update CSS variables |
+| 🌊 Scroll reveal behavior | `script.js` (`setupRevealAnimations`, `activateCardReveals`) | Tune threshold, delay, and reveal distance |
 | 🧩 Default anime list | `script.js` (`animeList`) | Add/remove objects |
 | 🏷️ Branding text | `index.html` | Edit title, subtitle, labels |
 | 🧠 Modal content | `script.js` (`openModal`) | Add extra fields/chips |
