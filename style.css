@@ -361,6 +361,22 @@ body {
     line-height: 1.05;
 }
 
+.modal-meta {
+    margin-bottom: 14px;
+    display: grid;
+    gap: 6px;
+}
+
+.modal-meta p {
+    color: var(--ink-soft);
+    line-height: 1.35;
+    margin: 0;
+}
+
+.modal-meta strong {
+    color: var(--ink);
+}
+
 .modal-content p {
     color: var(--ink-soft);
     line-height: 1.7;

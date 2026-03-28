@@ -44,6 +44,10 @@ const modalImage = document.getElementById("modalImage");
 const modalDesc = document.getElementById("modalDesc");
 const modalGenre = document.getElementById("modalGenre");
 const modalSource = document.getElementById("modalSource");
+const modalEpisodes = document.getElementById("modalEpisodes");
+const modalSeason = document.getElementById("modalSeason");
+const modalRating = document.getElementById("modalRating");
+const modalGenres = document.getElementById("modalGenres");
 const closeModal = document.getElementById("closeModal");
 const resultCount = document.getElementById("resultCount");
 const sourceBadge = document.getElementById("sourceBadge");
@@ -57,6 +61,10 @@ const animeList = [
     {
         title: "Demon Slayer",
         genre: "Action",
+        genres: ["Action", "Fantasy", "Supernatural"],
+        episodes: "55+",
+        season: "Spring 2019",
+        rating: "R - 17+ (Violence & Profanity)",
         image: "https://m.media-amazon.com/images/M/MV5BZjZjNzI5MDctY2Y4YS00NmM4LTljMmItZTFkOTExNGI3ODRhXkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_.jpg",
         highResImage: "https://m.media-amazon.com/images/M/MV5BZjZjNzI5MDctY2Y4YS00NmM4LTljMmItZTFkOTExNGI3ODRhXkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_.jpg",
         desc:"A boy becomes a demon slayer to save his sister."
@@ -64,6 +72,10 @@ const animeList = [
     {
         title: "One Piece",
         genre: "Adventure",
+        genres: ["Action", "Adventure", "Fantasy"],
+        episodes: "1000+",
+        season: "Fall 1999",
+        rating: "PG-13 - Teens 13 or older",
         image: "https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
         highResImage: "https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
         desc: "Pirates searching for the ultimate treasure."
@@ -71,6 +83,10 @@ const animeList = [
     {
         title: "Haikyuu",
         genre: "Sports",
+        genres: ["Comedy", "Drama", "Sports"],
+        episodes: "85",
+        season: "Spring 2014",
+        rating: "PG-13 - Teens 13 or older",
         image: "https://m.media-amazon.com/images/M/MV5BYjYxMWFlYTAtYTk0YS00NTMxLWJjNTQtM2E0NjdhYTRhNzE4XkEyXkFqcGc@._V1_.jpg",
         highResImage: "https://m.media-amazon.com/images/M/MV5BYjYxMWFlYTAtYTk0YS00NTMxLWJjNTQtM2E0NjdhYTRhNzE4XkEyXkFqcGc@._V1_.jpg",
         desc: "A short boy dreams of becoming a volleyball champion."
@@ -78,6 +94,10 @@ const animeList = [
     {
         title: "Your Name",
         genre: "Romance",
+        genres: ["Drama", "Romance", "Supernatural"],
+        episodes: "1",
+        season: "Summer 2016",
+        rating: "PG - Children",
         image: "https://upload.wikimedia.org/wikipedia/en/0/0b/Your_Name_poster.png",
         highResImage: "https://upload.wikimedia.org/wikipedia/en/0/0b/Your_Name_poster.png",
         desc: "A beautiful story of two strangers connected by fate."
@@ -238,10 +258,18 @@ setupRevealAnimations();
 renderCards(animeList);
 
 function openModal(anime){
+    const genreList = Array.isArray(anime.genres) && anime.genres.length > 0
+        ? anime.genres.join(", ")
+        : anime.genre || "Unknown";
+
     modalTitle.textContent = anime.title;
     modalImage.src = anime.highResImage || anime.image;
     modalDesc.textContent = anime.desc;
     modalGenre.textContent = anime.genre;
+    modalEpisodes.textContent = anime.episodes || "Unknown";
+    modalSeason.textContent = anime.season || "Unknown";
+    modalRating.textContent = anime.rating || "Unknown";
+    modalGenres.textContent = genreList;
     modalSource.textContent = activeSource === "remote" ? "Live result" : "Local pick";
 
     modal.classList.add("show");
@@ -267,6 +295,14 @@ async function fetchAnime(query){
         let formattedData = data.data.map(anime => ({
             title: anime.title,
             genre: anime.genres[0]?.name || "Unknown",
+            genres: anime.genres?.map((item) => item.name) || [],
+            episodes: anime.episodes ? String(anime.episodes) : "Unknown",
+            season: anime.season && anime.year
+                ? `${anime.season[0].toUpperCase()}${anime.season.slice(1)} ${anime.year}`
+                : anime.year
+                    ? String(anime.year)
+                    : "Unknown",
+            rating: anime.rating || "Unknown",
             image: anime.images.webp?.image_url || anime.images.jpg.image_url,
             highResImage:
                 anime.images.webp?.large_image_url ||
