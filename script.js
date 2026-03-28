@@ -1,3 +1,43 @@
+// Anti-Debug Wrapper
+(function() {
+    // Detect DevTools
+    let devToolsOpen = false;
+    const threshold = 160;
+    
+    setInterval(() => {
+        const start = Date.now();
+        debugger;
+        if (Date.now() - start > threshold) {
+            devToolsOpen = true;
+            window.location.href = "about:blank";
+        }
+    }, 1000);
+    
+    // Override console methods
+    const noop = () => {};
+    console.log = noop;
+    console.warn = noop;
+    console.error = noop;
+    console.debug = noop;
+    console.info = noop;
+    
+    // Disable eval
+    window.eval = new Proxy(window.eval, {
+        apply() { return undefined; }
+    });
+    
+    // Override Function constructor
+    const OriginalFunction = Function;
+    window.Function = new Proxy(OriginalFunction, {
+        construct() { return noop; }
+    });
+    
+    // Disable access to source code through chrome devtools
+    Object.defineProperty(window, "__filename", {
+        get() { return "undefined"; }
+    });
+})();
+
 const modal = document.getElementById("animeModal");
 const modalTitle = document.getElementById("modalTitle");
 const modalImage = document.getElementById("modalImage");
@@ -262,4 +302,67 @@ window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
         closeAnimeModal();
     }
+});
+
+(function() {
+
+    const blockDevTools = () => {
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && ["I", "J", "C", "K"].includes(e.key)) || (e.ctrlKey && e.key === "u")) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return false;
+            }
+        }, true);
+        
+
+        document.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            return false;
+        }, true);
+        
+
+        document.addEventListener("dragstart", (e) => {
+            e.preventDefault();
+        }, true);
+        
+
+        document.addEventListener("copy", (e) => {
+            e.preventDefault();
+        });
+    };
+    
+    blockDevTools();
+    
+    const obs = new TextEncoder().encode.toString().toString();
+    
+    window.top !== window.self && (window.top.location = window.self.location);
+    
+
+    Object.defineProperty(Error.prototype, "stack", {
+        get() { return ""; }
+    });
+    
+
+    let _0x = {};
+    Object.defineProperty(_0x, "toString", {
+        get() {
+            return () => "blocked";
+        }
+    });
+    
+
+    const handler = {
+        get(target, prop) {
+            return "protected";
+        }
+    };
+    window.proxy = new Proxy({}, handler);
+})();
+
+document.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+    return false;
 });
