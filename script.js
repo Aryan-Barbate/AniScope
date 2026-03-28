@@ -46,6 +46,7 @@ const animeList = [
 
 let currentAnimeList = [...animeList];
 let activeSource = "local";
+let revealObserver = null;
 
 function createCard(anime, index){
         return `
@@ -69,7 +70,66 @@ function renderCards(list){
         container.innerHTML = list.map((anime, index) => createCard(anime, index)).join("");
     }
 
+    activateCardReveals();
+
     updateMeta(list.length);
+}
+
+function setupRevealAnimations() {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reducedMotion) {
+        document
+            .querySelectorAll(".brand-block, .search-container, .toolbar, .site-footer")
+            .forEach((element) => element.classList.add("in-view"));
+        return;
+    }
+
+    revealObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                entry.target.classList.add("in-view");
+                revealObserver.unobserve(entry.target);
+            });
+        },
+        {
+            threshold: 0.16,
+            rootMargin: "0px 0px -10% 0px"
+        }
+    );
+
+    document
+        .querySelectorAll(".brand-block, .search-container, .toolbar, .site-footer")
+        .forEach((element, index) => {
+            element.classList.add("reveal-on-scroll");
+            element.style.setProperty("--reveal-delay", `${index * 70}ms`);
+            revealObserver.observe(element);
+        });
+}
+
+function activateCardReveals() {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const items = container.querySelectorAll(".card, .status-card");
+    items.forEach((item, index) => {
+        if (reducedMotion) {
+            item.classList.add("in-view");
+            return;
+        }
+
+        item.classList.add("reveal-on-scroll");
+        item.style.setProperty("--reveal-delay", `${Math.min(index * 48, 360)}ms`);
+
+        if (revealObserver) {
+            revealObserver.observe(item);
+        } else {
+            item.classList.add("in-view");
+        }
+    });
 }
 
 function updateMeta(total){
@@ -134,6 +194,7 @@ container.addEventListener("click", (e) => {
     }
 });
 
+setupRevealAnimations();
 renderCards(animeList);
 
 function openModal(anime){
